@@ -1,0 +1,299 @@
+{
+  "problem": "Steady lid-driven cavity flow",
+  "root": "F:\\科研相关\\方程复现\\Lid Cavity Flow",
+  "results_directory": "F:\\科研相关\\方程复现\\Lid Cavity Flow\\results",
+  "pod_file": "F:\\科研相关\\方程复现\\Lid Cavity Flow\\code\\LidDrivenPOD.mat",
+  "validation_file": "F:\\科研相关\\方程复现\\Lid Cavity Flow\\code\\LidDrivenValidation.mat",
+  "field_shape": [
+    49,
+    49
+  ],
+  "state_definition": "Interior p, u, v variables in the original open-source interleaved order.",
+  "reference_state": "zero",
+  "snapshot_counts": [
+    30,
+    60,
+    100
+  ],
+  "singular_value_snapshot_count": 100,
+  "m_values": [
+    2,
+    4,
+    6,
+    8
+  ],
+  "omega_values": [
+    0.01,
+    1.0,
+    100.0
+  ],
+  "n_residual": 2048,
+  "n_omega_selection": 50,
+  "n_reported_test": 121,
+  "parameter_definition": [
+    "Reynolds number Re",
+    "cavity angle theta in degrees"
+  ],
+  "parameter_lower": [
+    100.0,
+    60.0
+  ],
+  "parameter_upper": [
+    500.0,
+    120.0
+  ],
+  "network": {
+    "hidden_width": 30,
+    "hidden_depth": 5,
+    "activation": "silu",
+    "input_dimension": 2,
+    "output_dimension": "equal to POD dimension m"
+  },
+  "training": {
+    "total_epochs": 6000,
+    "adam_epochs": 5800,
+    "lbfgs_epochs": 200,
+    "learning_rate": 0.01,
+    "learning_rate_gamma": 0.95,
+    "learning_rate_step": 200,
+    "projection_batches": 1,
+    "residual_batches": 10,
+    "pdnn_l2_lambda": 1e-10,
+    "seed": 1234,
+    "torch_dtype": "torch.float32",
+    "device": "cpu"
+  },
+  "field_figure": {
+    "n_snapshots": 100,
+    "m": 8,
+    "indices": [
+      23,
+      61,
+      119
+    ],
+    "parameters": [
+      [
+        140.0,
+        72.0
+      ],
+      [
+        340.0,
+        90.0
+      ],
+      [
+        460.0,
+        120.0
+      ]
+    ]
+  },
+  "optimal_omega": {
+    "30": [
+      0.01,
+      0.01,
+      1.0,
+      0.01
+    ],
+    "60": [
+      0.01,
+      0.01,
+      0.01,
+      0.01
+    ],
+    "100": [
+      0.01,
+      0.01,
+      0.01,
+      0.01
+    ]
+  },
+  "errors": {
+    "30": {
+      "Projection": [
+        0.12829789819775592,
+        0.05313723459352878,
+        0.02796979528427042,
+        0.014090984743675365
+      ],
+      "POD-G": [
+        0.18340203404609817,
+        0.1686189382455953,
+        0.057629014273235545,
+        0.024611647075042698
+      ],
+      "PDNN": [
+        0.12832492872871196,
+        0.053230854492153874,
+        0.028307157299309365,
+        0.014855809301385725
+      ],
+      "PINN": [
+        0.1826526332809336,
+        0.15584265348591492,
+        0.05645994404906854,
+        0.0326522689268553
+      ],
+      "PRNN": [
+        0.1437531794753403,
+        0.09534969451196655,
+        0.03695124734232581,
+        0.0205773317249738
+      ]
+    },
+    "60": {
+      "Projection": [
+        0.1275949376961051,
+        0.049628531388848686,
+        0.026254215246820017,
+        0.012775851492732861
+      ],
+      "POD-G": [
+        0.18371438333375117,
+        0.15246009988086667,
+        0.066165985391774,
+        0.022625499234463897
+      ],
+      "PDNN": [
+        0.1275975216834296,
+        0.04964222003581426,
+        0.02627207750067761,
+        0.012879569454793361
+      ],
+      "PINN": [
+        0.18300039473465177,
+        0.155958779741881,
+        0.05828544918352685,
+        0.03311900463733788
+      ],
+      "PRNN": [
+        0.14419191542577692,
+        0.07931709634360345,
+        0.03481096122081256,
+        0.015291706791690203
+      ]
+    },
+    "100": {
+      "Projection": [
+        0.12714590302495954,
+        0.048802026473415645,
+        0.025489003690682372,
+        0.011940049004626528
+      ],
+      "POD-G": [
+        0.1852298199224367,
+        0.1430048731787456,
+        0.056772407807181624,
+        0.020915773498601874
+      ],
+      "PDNN": [
+        0.12714885941708418,
+        0.04880631848264654,
+        0.025495574003315917,
+        0.012016423888124106
+      ],
+      "PINN": [
+        0.18293870722291314,
+        0.14710830749003712,
+        0.059429471276075764,
+        0.03241111586740116
+      ],
+      "PRNN": [
+        0.14460238763547203,
+        0.060178728068213186,
+        0.02860128771736081,
+        0.01344788872042049
+      ]
+    }
+  },
+  "validation_grid_search": {
+    "30": {
+      "2": {
+        "0.01": 0.15057025661016393,
+        "1": 0.1983410690205918,
+        "100": 0.19083325023295
+      },
+      "4": {
+        "0.01": 0.08181468512254003,
+        "1": 0.14030807932892977,
+        "100": 0.12930478403961077
+      },
+      "6": {
+        "0.01": 0.033953184300785665,
+        "1": 0.032971317103838674,
+        "100": 0.04198732134883632
+      },
+      "8": {
+        "0.01": 0.016085633732829525,
+        "1": 0.0161768745912344,
+        "100": 0.01982463380134873
+      }
+    },
+    "60": {
+      "2": {
+        "0.01": 0.1520838860432878,
+        "1": 0.1893267472138099,
+        "100": 0.18837371101433767
+      },
+      "4": {
+        "0.01": 0.07459473540103088,
+        "1": 0.09011669463703476,
+        "100": 0.1016288706317497
+      },
+      "6": {
+        "0.01": 0.03184547049648437,
+        "1": 0.03222786673390892,
+        "100": 0.05074980044881585
+      },
+      "8": {
+        "0.01": 0.013156849964341586,
+        "1": 0.014717724258176482,
+        "100": 0.03359015036664911
+      }
+    },
+    "100": {
+      "2": {
+        "0.01": 0.1528804183355902,
+        "1": 0.1916286071155521,
+        "100": 0.1900716512394708
+      },
+      "4": {
+        "0.01": 0.05947768019924036,
+        "1": 0.0767765864232114,
+        "100": 0.09601858439320239
+      },
+      "6": {
+        "0.01": 0.027427602243034754,
+        "1": 0.02860981578841291,
+        "100": 0.05259624451692334
+      },
+      "8": {
+        "0.01": 0.012903605431902046,
+        "1": 0.013270987543775772,
+        "100": 0.017787599524451535
+      }
+    }
+  },
+  "elapsed_seconds": 3.4657360000001063,
+  "output_files": {
+    "singular_values": "figures/Figure_1_Singular_Values_Ns100.png",
+    "error_comparison": "figures/Figure_2_Error_Comparison_Ns30_60_100_m2_4_6_8.png",
+    "optimal_omega": "figures/Figure_3_Optimal_Omega_Ns30_60_100_m2_4_6_8.png",
+    "truth_prnn": "figures/Figure_4_Truth_PRNN_Ns100_m8.png",
+    "numerical_results": "numerical_results.csv",
+    "validation_grid_search": "prnn_validation_grid_search.json",
+    "training_histories": "training_histories.json"
+  },
+  "notes": [
+    "The model is steady-state, so no time derivative of the neural-network reduced coefficients is used.",
+    "The POD reference field is zero, following the paper's steady-state setting.",
+    "The input parameters are normalized componentwise to [-1, 1].",
+    "The POD coefficients are normalized componentwise using their mean and standard deviation.",
+    "PDNN uses the normalized projection-coefficient MSE plus lambda times the squared Frobenius norm of the Linear-layer weight matrices.",
+    "PINN minimizes the mean squared reduced POD-G residual.",
+    "PRNN minimizes the PDNN objective plus omega times the PINN residual loss.",
+    "POD-G uses the high-fidelity projection at each reported test parameter as its nonlinear-solver initial value, matching the original cavity code.",
+    "The supplied repository contains one high-fidelity validation/test MAT file. A fixed random subset is used for omega selection, while all available points are used for the final reported errors.",
+    "Figure 2 places all snapshot counts on one semilogarithmic error axis.",
+    "Figure 4 uses pressure contours with velocity vector overlays in the physical parallelogram.",
+    "With M_VALUES=[2,4,6,8], Figure 4 dynamically uses Ns=100 and m=8."
+  ]
+}
